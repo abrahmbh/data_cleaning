@@ -65,6 +65,7 @@ for(i in 1:30){
         ## The average of each variable for each activity and subject 
         ## (e.g. group by activity, subject and then take the average)
         ## taking the mean of everything except first 2 cols
+        temp_data <- 
         temp_data <- rbind(temp_data,colMeans(filter(semi_data, 
                                                     subject.id == i, 
                                                     activity == j)[,-(1:2)]))
@@ -74,7 +75,8 @@ for(i in 1:30){
 names(temp_data) <- col_names
 
 ## final data
-final_data <- data.frame(subject.id = 1:30, activity = act_name)
+subject_id <- rep(1:30, each = 6)
+final_data <- data.frame(subject.id = subject_id, activity = act_name)
 final_data <- cbind(final_data, temp_data)
 
 ## writing the final data to csv
